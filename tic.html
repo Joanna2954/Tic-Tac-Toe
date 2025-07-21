@@ -1,0 +1,129 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<style>
+
+.er{
+    height: 400px;
+    width: 450px;
+    border: 2px solid rgb(218, 64, 92);
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow:rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(223, 194, 194, 0.06) 0px 0px 0px 1px;
+     background-color:rgb(204, 29, 90);
+    background-position: auto;
+    background-repeat: repeat(3,1fr);
+    
+    
+   
+
+    
+}
+
+
+.rt{
+    border:2px solid rgb(204, 29, 90) ;
+    background-color: rgb(237, 203, 218) ;
+    height: 109px;
+    width: 120px;
+    box-shadow:  rgba(218, 235, 230, 0.71) 0px 5px 15px;
+    border-radius: 20px;
+margin-top: 10px;
+margin-left: 11px;
+font-size: 45px;
+display: flex;
+align-items: center;
+justify-content: center;
+
+    
+    
+    
+
+    }
+h2{
+    margin-left: 690px;
+    margin-top: 120px;
+}
+
+
+    
+</style>
+<body>
+
+
+    <div class="er" id="er">
+
+        <div class="rt col=4" onclick="display(0)" id="box0"></div>
+        <div class="rt col=4" onclick="display(1)" id="box1"></div>
+        <div class="rt col=4" onclick="display(2)" id="box2"></div>
+        <div class="rt col=4" onclick="display(3)" id="box3"></div>
+        <div class="rt col=4" onclick="display(4)" id="box4"></div>
+        <div class="rt col=4" onclick="display(5)" id="box5"></div>
+        <div class="rt col=4" onclick="display(6)" id="box6"></div>
+        <div class="rt col=4" onclick="display(7)" id="box7"></div>
+        <div class="rt col=4" onclick="display(8)" id="box8"></div>
+        
+    </div>
+
+    
+
+    <h2 id="res"></h2>
+    
+    <script>   
+    let player="💗"
+  
+    let str = ["", "", "", "", "", "", "", "", ""];
+    let win = false;
+
+    let winPatterns = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+      [0, 4, 8], [2, 4, 6]             
+    ];
+
+    function display(i) {
+      if (str[i] === "" && !win) {
+        str[i] = player;
+        document.getElementById("box" + i).innerHTML = player;
+        winner();
+
+
+           player = player === '💗' ? '🤍' : '💗';
+      
+     }
+   }
+
+    function winner() {
+      for (let pattern of winPatterns) {
+        let [a, b, c] = pattern;
+        if (str[a] && str[a] === str[b] && str[b] === str[c]) {
+          document.getElementById("res").innerText = `Winner is ${str[a]}`;
+          win = true;
+          return;
+        }
+      }
+
+    
+      if (!str.includes("") && !win) {
+        document.getElementById("res").innerText = "Draw!";
+}
+}
+</script>
+
+</body>
+</html>
